@@ -13,15 +13,21 @@ def getFiles(path):
     return files
 
 
-def csv2txt(path='./time_intervals'):
-    files = getFiles(path)
+def csv2txt(path='./time_zones', writeTo='./loc_json'):
+    readPath = path
+    if not readPath.endswith('/'):
+        readPath += '/'
+    writePath = writeTo
+    if not writePath.endswith('/'):
+        writePath += '/'
+    files = getFiles(readPath)
 
     # 遍历所有csv文件，每个文件是一个时间区间的数据
     for file in files:
-        df = pd.read_csv('./time_intervals/%s' % file)
+        df = pd.read_csv(readPath + '%s' % file)
         locs = df[['lng', 'lat']]
         # 遍历该csv文件的每一行，将经纬度数据转换为json可读的格式
-        with open('./loc_json/%s.txt' % file.split('.')[0], 'w') as f:
+        with open(writePath + '%s.txt' % file.split('.')[0], 'w') as f:
             for i in range(len(locs)):
                 line = '{"lng":'+str(locs.iloc[i][0])+',"lat":'+str(locs.iloc[i][1])+'},\n'
                 f.write(line)

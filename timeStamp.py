@@ -16,7 +16,7 @@ def getFiles(path):
 
 def createTimeStamps(num, date):
     delta = 24 / num
-    assert delta == int(delta), 'time interval invlaid'
+    assert delta == int(delta), 'number of time zone invlaid'
     delta = int(delta)
 
     time_stamps = []
@@ -31,7 +31,10 @@ def createTimeStamps(num, date):
     return time_stamps
 
 
-def timeIntervals(num=24, path='./data'):
+def timeIntervals(num=24, path='./data', writeTo='./time_zones'):
+    writePath = writeTo
+    if not writePath.endswith('/'):
+        writePath += '/'
     files = getFiles(path)
 
     # 遍历所有csv文件，每个文件是一天的数据
@@ -54,11 +57,11 @@ def timeIntervals(num=24, path='./data'):
             intervals[k-1].append(contents)
 
         for n in range(len(time_stamps)):
-            if not os.path.exists('./time_intervals/time%s.csv' % n):
-                with open('./time_intervals/time%s.csv' % n, 'w') as f:
+            if not os.path.exists(writePath + 'time%s.csv' % n):
+                with open(writePath + 'time%s.csv' % n, 'w') as f:
                     writer = csv.writer(f)
                     writer.writerow(['recitime','lng', 'lat', 'date'])
-            with open('./time_intervals/time%s.csv' % n, 'a') as f:
+            with open(writePath + 'time%s.csv' % n, 'a') as f:
                 writer = csv.writer(f)
                 writer.writerows(line for line in intervals[n])
 
