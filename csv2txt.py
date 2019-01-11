@@ -34,4 +34,4 @@ def csv2txt(path='./time_zones', writeTo='./loc_json'):
 
 
 if __name__ == '__main__':  
-    csv2txt(path='./time_intervals')
+    csv2txt()

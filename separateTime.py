@@ -31,20 +31,24 @@ def createTimeStamps(num, date):
     return time_stamps
 
 
-def timeIntervals(num=24, path='./data', writeTo='./time_zones'):
+def separateTime(num=24, files=None, path='./data', writeTo='./time_zones'):
+    readPath = path
+    if not readPath.endswith('/'):
+        readPath += '/'
     writePath = writeTo
     if not writePath.endswith('/'):
         writePath += '/'
-    files = getFiles(path)
+    files = getFiles(path) if files is None  # 否则用一个列表给出需要转换的文件
 
-    # 遍历所有csv文件，每个文件是一天的数据
+    # 遍历所有 csv 文件，每个文件是一天的数据
     for i in range(len(files)):
         date = files[i].split('.')[0]
         time_stamps = createTimeStamps(num, date)
-        df = pd.read_csv('./data/%s.csv' % date)
+        df = pd.read_csv(readPath + '%s.csv' % date)
 
         intervals = [[] for _ in range(len(time_stamps))]  # 不要用 [[]] * num 初始化，会使得所有[]共享内存
-        # 遍历该csv文件的每一行，对每个时间区间内的点分类
+        # 遍历该 csv 文件的每一行，对每个时间区间内的点分类
+        # 优化：对于某一区间，直接提取 df 落在该区间中的所有点，然后保存
         for j in range(len(df)):
             ts = df.ix[j, 'recitime']
             k = 0
@@ -67,4 +71,4 @@ def timeIntervals(num=24, path='./data', writeTo='./time_zones'):
 
 
 if __name__ == '__main__':  
-    timeIntervals(num=24, path='./data')
+    separateTime()
