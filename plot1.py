@@ -22,7 +22,7 @@ def formatnum(x, pos):
     return '$%.1f$x$10^{4}$' % (x/10000)
 
 
-def formatdate(num):
+def formatdate(files, num):
     return files[num][4:6] + '-' + files[num][6:8]
 
 
@@ -109,7 +109,8 @@ xmajorFormatter = FormatStrFormatter('%.0f')
 ax.xaxis.set_major_locator(xmajorLocator)
 ax.xaxis.set_major_formatter(xmajorFormatter)
 ax.set_xticks([0, 20, 40, 60])
-ax.set_xticklabels([formatdate(0), formatdate(20), formatdate(40), formatdate(60)])
+ax.set_xticklabels([formatdate(files, 0), formatdate(files, 20), 
+                    formatdate(files, 40), formatdate(files, 60)])
 # y 轴
 formatter = FuncFormatter(formatnum)
 ax.yaxis.set_major_formatter(formatter)

@@ -61,11 +61,11 @@ def separateTime(num=24, files=None, path='./data', writeTo='./time_zones'):
             intervals[k-1].append(contents)
 
         for n in range(len(time_stamps)):
-            if not os.path.exists(writePath + 'time%s.csv' % n):
-                with open(writePath + 'time%s.csv' % n, 'w') as f:
+            if not os.path.exists(writePath + 'time%02d.csv' % n):
+                with open(writePath + 'time%02d.csv' % n, 'w') as f:
                     writer = csv.writer(f)
                     writer.writerow(['recitime','lng', 'lat', 'date'])
-            with open(writePath + 'time%s.csv' % n, 'a') as f:
+            with open(writePath + 'time%02d.csv' % n, 'a') as f:
                 writer = csv.writer(f)
                 writer.writerows(line for line in intervals[n])
 
