@@ -34,6 +34,5 @@ def csv2txt(path, writeTo):
                 f.write(line)
 
 
-if __name__ == '__main__':
-	csv2txt(path='./csv_separated_by_time', writeTo='./loc_txt_time')
-    # csv2txt(path='./csv_separated_by_label', writeTo='./loc_txt_label')
+if __name__ == '__main__':  
+    csv2txt(path='./csv_separated_by_time', writeTo='./loc_txt_time')

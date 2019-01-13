@@ -14,7 +14,7 @@ def getFiles(path):
     return files
 
 
-def separateLabel(files=None, path='./data2', writeTo='./csv_separated_by_label'):
+def separateLabel(files=None, path='./data_labeled', writeTo='./csv_separated_by_label'):
     readPath = path
     if not readPath.endswith('/'):
         readPath += '/'

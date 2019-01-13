@@ -58,7 +58,7 @@ for i in range(len(ax)):
 
     # 设置 x 轴刻度
     hours = [2, 7, 12, 17, 22]
-    ax[i].set_xticks(hours)
+    ax[i].set_xticks([xt-0.5 for xt in hours])
     ax[i].set_xticklabels([formathour(h) for h in hours])
     # 设置 y 轴刻度
     days = [2, 22, 42, 62]

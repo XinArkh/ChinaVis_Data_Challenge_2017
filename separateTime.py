@@ -38,7 +38,7 @@ def separateTime(num=24, files=None, path='./data', writeTo='./csv_separated_by_
     writePath = writeTo
     if not writePath.endswith('/'):
         writePath += '/'
-    files = getFiles(path) if files is None else files # 否则用一个列表给出需要转换的文件
+    files = getFiles(readPath) if files is None else files # 否则用一个列表给出需要转换的文件
 
     # 遍历所有 csv 文件，每个文件是一天的数据
     for i in range(len(files)):
@@ -56,7 +56,8 @@ def separateTime(num=24, files=None, path='./data', writeTo='./csv_separated_by_
                 k += 1
                 if k == len(time_stamps):
                     break
-            contents = list(df.ix[j, ['recitime','lng', 'lat']])
+            # contents = list(df.ix[j, ['recitime','lng', 'lat']])
+            contents = list(df.ix[j, ['recitime','lng', 'lat', 'label']])  # 对应 data_labeled
             contents.append(int(date))
             intervals[k-1].append(contents)
 
@@ -64,12 +65,13 @@ def separateTime(num=24, files=None, path='./data', writeTo='./csv_separated_by_
             if not os.path.exists(writePath + 'time%02d.csv' % n):
                 with open(writePath + 'time%02d.csv' % n, 'w') as f:
                     writer = csv.writer(f)
-                    writer.writerow(['recitime','lng', 'lat', 'date'])
+                    # writer.writerow(['recitime','lng', 'lat', 'date'])
+                    writer.writerow(['recitime','lng', 'lat', 'label', 'date'])  # 对应 data_labeled
             with open(writePath + 'time%02d.csv' % n, 'a') as f:
                 writer = csv.writer(f)
                 writer.writerows(line for line in intervals[n])
 
 
-if __name__ == '__main__':  
-    # separateTime(files=['20170404.csv'], writeTo='./csv_separated_by_time_0404')
+if __name__ == '__main__':
     separateTime()
+    # separateTime(path='./data_labeled', writeTo='./csv_separated_by_time_3days')

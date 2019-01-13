@@ -67,4 +67,8 @@ ax.set_xticklabels([formatdate(files, 0), formatdate(files, 20),
 formatter = FuncFormatter(formatnum)
 ax.yaxis.set_major_formatter(formatter)
 
+# 坐标轴端点文字
+plt.text(-3, 3e5, '短信总数/条', fontproperties='SimHei')
+plt.text(63, -0.9e4, '日期', fontproperties='SimHei')
+
 plt.show()
