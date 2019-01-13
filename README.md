@@ -20,6 +20,7 @@
 2. 运行 `separateTime.py`，得到 24 个时间区间的数据 csv 文件，每个文件是 63 天中所有落在这一时间区间的数据（这一步耗时较久，优化思路在注释中给出，暂未实现），保存在`./csv_separated_by_time`中
 3. 运行 `csv2txt.py`，提取上一步得到的 csv 文件中经纬度信息，转换为 txt 格式，保存在`loc_txt_time`中
 4. 运行 `separateLabel.py`，得到每一天 3 种类别的垃圾短信（用三种标签标出，有标签数据保存在文件夹`data_labeled`中，这部分属于组员的工作，代码未在此仓库给出）的全天活动记录 csv 文件，保存在`./csv_separated_by_label`中
-5. 将`loc_txt_time`或`loc_txt_label`中的数据粘贴到`heatmap.html`中对应位置，打开网页即可得到对应的位置热图
-6. `plot1.py`——绘制每天垃圾短信总数的柱状图
-7. `plot2.py`——绘制所有日期×所有时段垃圾短信总数的热图
+5. 编辑并运行 `csv2txt.py`，提取上一步得到的 csv 文件中经纬度信息，转换为 txt 格式，保存在`loc_txt_label`中
+6. 将`loc_txt_time`或`loc_txt_label`中的数据粘贴到`heatmap.html`中对应位置，打开网页即可得到对应的位置热图
+7. `plot1.py`——绘制每天垃圾短信总数的柱状图
+8. `plot2.py`——绘制所有日期×所有时段垃圾短信总数的热图
