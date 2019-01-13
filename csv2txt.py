@@ -13,7 +13,7 @@ def getFiles(path):
     return files
 
 
-def csv2txt(path='./time_zones', writeTo='./loc_json'):
+def csv2txt(path, writeTo):
     readPath = path
     if not readPath.endswith('/'):
         readPath += '/'
@@ -34,5 +34,6 @@ def csv2txt(path='./time_zones', writeTo='./loc_json'):
                 f.write(line)
 
 
-if __name__ == '__main__':  
-    csv2txt(path='./time_zones_0404', writeTo='./loc_json_0404')
+if __name__ == '__main__':
+	csv2txt(path='./csv_separated_by_time', writeTo='./loc_txt_time')
+    # csv2txt(path='./csv_separated_by_label', writeTo='./loc_txt_label')

@@ -31,7 +31,7 @@ def createTimeStamps(num, date):
     return time_stamps
 
 
-def separateTime(num=24, files=None, path='./data', writeTo='./time_zones'):
+def separateTime(num=24, files=None, path='./data', writeTo='./csv_separated_by_time'):
     readPath = path
     if not readPath.endswith('/'):
         readPath += '/'
@@ -71,4 +71,5 @@ def separateTime(num=24, files=None, path='./data', writeTo='./time_zones'):
 
 
 if __name__ == '__main__':  
-    separateTime(files=['20170404.csv'], writeTo='./time_zones_0404')
+    # separateTime(files=['20170404.csv'], writeTo='./csv_separated_by_time_0404')
+    separateTime()

@@ -32,11 +32,11 @@ def formathour(num):
 
 nums = np.zeros((63, 24))
 
-times = getFiles('./time_zones')
+times = getFiles('./csv_separated_by_time')
 dates = getFiles('./data')
 
 for i in range(len(times)):
-    df = pd.read_csv('./time_zones/'+times[i])
+    df = pd.read_csv('./csv_separated_by_time/'+times[i])
     for j in range(len(dates)):
         date = int(dates[j].split('.')[0])
         nums[j, i] = np.sum(df['date']==date)
