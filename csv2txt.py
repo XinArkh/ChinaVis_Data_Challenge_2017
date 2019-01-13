@@ -29,9 +29,10 @@ def csv2txt(path='./time_zones', writeTo='./loc_json'):
         # 遍历该csv文件的每一行，将经纬度数据转换为json可读的格式
         with open(writePath + '%s.txt' % file.split('.')[0], 'w') as f:
             for i in range(len(locs)):
-                line = '{"lng":'+str(locs.iloc[i][0])+',"lat":'+str(locs.iloc[i][1])+'},\n'
+                line = '{"lng":'+str(locs.iloc[i][0])+',"lat":'\
+                        +str(locs.iloc[i][1])+',"count":10},\n'
                 f.write(line)
 
 
 if __name__ == '__main__':  
-    csv2txt()
+    csv2txt(path='./time_zones_0404', writeTo='./loc_json_0404')

@@ -38,7 +38,7 @@ def separateTime(num=24, files=None, path='./data', writeTo='./time_zones'):
     writePath = writeTo
     if not writePath.endswith('/'):
         writePath += '/'
-    files = getFiles(path) if files is None  # 否则用一个列表给出需要转换的文件
+    files = getFiles(path) if files is None else files # 否则用一个列表给出需要转换的文件
 
     # 遍历所有 csv 文件，每个文件是一天的数据
     for i in range(len(files)):
@@ -71,4 +71,4 @@ def separateTime(num=24, files=None, path='./data', writeTo='./time_zones'):
 
 
 if __name__ == '__main__':  
-    separateTime()
+    separateTime(files=['20170404.csv'], writeTo='./time_zones_0404')
