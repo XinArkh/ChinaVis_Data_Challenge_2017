@@ -100,14 +100,24 @@ nums = [
         34382
 ]
 
+days = np.arange(len(files))
+holidays = [2, 3, 9, 10, 16, 17, 23, 24, 30, 31, 38, \
+            39, 40, 44, 45, 51, 52, 58, 59]  # 节假日序号
+mask = np.ones(len(files), dtype=bool)
+mask[holidays] = False
+weekdays = days[mask]  # 工作日序号
+
 ax = plt.axes()
-ax.bar(files, nums)
+ax.bar(weekdays, [nums[wd] for wd in weekdays], label='weekdays')
+ax.bar(holidays, [nums[hd] for hd in holidays], label='holidays')
+ax.legend(fontsize='large')
+
 # x 轴
 ax.set_xlim([-1, 63])
-xmajorLocator   = MultipleLocator(20)
-xmajorFormatter = FormatStrFormatter('%.0f')
-ax.xaxis.set_major_locator(xmajorLocator)
-ax.xaxis.set_major_formatter(xmajorFormatter)
+# xmajorLocator   = MultipleLocator(20)
+# xmajorFormatter = FormatStrFormatter('%.0f')
+# ax.xaxis.set_major_locator(xmajorLocator)
+# ax.xaxis.set_major_formatter(xmajorFormatter)
 ax.set_xticks([0, 20, 40, 60])
 ax.set_xticklabels([formatdate(files, 0), formatdate(files, 20), 
                     formatdate(files, 40), formatdate(files, 60)])
